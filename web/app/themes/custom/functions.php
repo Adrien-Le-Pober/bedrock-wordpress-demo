@@ -30,6 +30,27 @@ function menu_link_class(array $attrs): array
     return $attrs;
 }
 
+function pagination()
+{
+    $pages = paginate_links(['type' => 'array']);
+    if ($pages) {
+        echo '<nav aria-label="Pagination" class="my-4">';
+        echo "<ul class='pagination'>";
+
+        foreach ($pages as $page) {
+            $active = str_contains($page, 'current') !== false;
+            $class = "page-item";
+            $active && $class .= ' active';
+            echo '<li class="' . $class . '">';
+            echo str_replace('page-numbers', 'page-link', $page);
+            echo '</li>';
+        }
+
+        echo '</ul>';
+        echo '</nav>';
+    }
+}
+
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
 add_filter('nav_menu_css_class', 'App\menu_class');
