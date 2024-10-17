@@ -55,6 +55,27 @@ function pagination()
     }
 }
 
+function register_sport() {
+    register_taxonomy('sport', 'post', [
+        'labels' => [
+            'name' => 'Sport',
+            'singular_name'     => 'Sport',
+            'plural_name'       => 'Sports',
+            'search_items'      => 'Rechercher des sports',
+            'all_items'         => 'Tous les sports',
+            'edit_item'         => 'Editer le sport',
+            'update_item'       => 'Mettre à jour le sport',
+            'add_new_item'      => 'Ajouter un nouveau sport',
+            'new_item_name'     => 'Ajouter un nouveau sport',
+            'menu_name'         => 'Sport',
+        ],
+        'show_in_rest' => true, // rendre la taxonomie disponible dans les options des articles
+        'hierarchical' => true, // afficher des checkboxes pour selectionner les ports
+        'show_admin_column' => true,
+    ]);
+}
+
+add_action('init', 'App\register_sport');
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
 add_filter('nav_menu_css_class', 'App\menu_class');
