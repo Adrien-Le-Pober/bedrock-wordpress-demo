@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Metaboxes\SponsoMetaBox;
+
 function supports()
 {
     add_theme_support('post-thumbnails');
@@ -57,3 +59,6 @@ add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
+
+require_once('metaboxes/SponsoMetaBox.php');
+SponsoMetaBox::register();
