@@ -55,7 +55,7 @@ function pagination()
     }
 }
 
-function register_sport() {
+function init() {
     register_taxonomy('sport', 'post', [
         'labels' => [
             'name' => 'Sport',
@@ -73,9 +73,18 @@ function register_sport() {
         'hierarchical' => true, // afficher des checkboxes pour selectionner les ports
         'show_admin_column' => true,
     ]);
+    register_post_type('bien', [
+        'label' => 'Bien',
+        'public' => true,
+        'menu_position' => 3,
+        'menu_icon' => 'dashicons-building',
+        'supports' => ['title', 'editor', 'thumbnail'],
+        'show_in_rest' => true, // activer l'éditeur visuel
+        'has_archive' => true, // activer les pages d'archives pour ce type
+    ]);
 }
 
-add_action('init', 'App\register_sport');
+add_action('init', 'App\init');
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
 add_filter('nav_menu_css_class', 'App\menu_class');
