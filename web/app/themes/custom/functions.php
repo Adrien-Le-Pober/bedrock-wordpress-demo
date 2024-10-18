@@ -85,11 +85,35 @@ function init() {
     ]);
 }
 
+// altére la requête principale de WordPress pour créer des recherches avancées
+function pre_get_posts (\WP_Query $query) {
+    // annuler les filtres pour les sections suivantes
+    if (is_admin() || !is_search() || !$query->is_main_query()) {
+        return;
+    }
+    if (get_query_var('sponso') === '1') {
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => SponsoMetaBox::META_KEY,
+            'compare' => 'EXISTS',
+        ];
+        $query->set('meta_query', $meta_query);
+    }
+}
+
+// autoriser des paramètres d'URL spécifiques
+function query_vars ($params) {
+    $params[] = 'sponso';
+    return $params;
+}
+
+add_action('pre_get_posts', 'App\pre_get_posts');
 add_action('init', 'App\init');
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
+add_filter('query_vars', 'App\query_vars');
 
 require_once('Metaboxes/SponsoMetaBox.php');
 require_once('Options/AgenceMenuPage.php');

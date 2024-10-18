@@ -44,14 +44,12 @@ get_header() ?>
                 ]
             ]);
             while ($query->have_posts()) : $query->the_post();
-            ?>
-                <?php get_template_part('parts/card', 'post'); ?>
-            <?php endwhile;
+                get_template_part('parts/card', 'post');
+            endwhile;
             wp_reset_postdata();
             ?>
         </div>
-
-<?php endwhile;
+    <?php endwhile;
 endif; ?>
 
 <?php get_footer() ?>
