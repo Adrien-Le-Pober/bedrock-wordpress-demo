@@ -4,6 +4,7 @@ namespace App;
 
 use App\Options\AgenceMenuPage;
 use App\Metaboxes\SponsoMetaBox;
+use App\Widget\YoutubeWidget;
 
 function supports()
 {
@@ -107,7 +108,9 @@ function query_vars ($params) {
     return $params;
 }
 
-function register_widget () {
+require_once 'Widgets/YoutubeWidget.php';
+function register_custom_widget () {
+    register_widget(YoutubeWidget::class);
     register_sidebar([
         'id' => 'homepage',
         'name' => 'Sidebar Accueil',
@@ -123,7 +126,7 @@ add_action('pre_get_posts', 'App\pre_get_posts');
 add_action('init', 'App\init');
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
-add_action('widgets_init', 'App\register_widget'); 
+add_action('widgets_init', 'App\register_custom_widget'); 
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
 add_filter('query_vars', 'App\query_vars');
