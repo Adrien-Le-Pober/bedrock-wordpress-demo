@@ -107,10 +107,23 @@ function query_vars ($params) {
     return $params;
 }
 
+function register_widget () {
+    register_sidebar([
+        'id' => 'homepage',
+        'name' => 'Sidebar Accueil',
+        // pour modifier l'affichage par défaut
+        'before_widget' => '<div class="p-4 %2$s" id="%1$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4 class="font-italic">',
+        'after_title' => '</h4>'
+    ]);
+}
+
 add_action('pre_get_posts', 'App\pre_get_posts');
 add_action('init', 'App\init');
 add_action('after_setup_theme', 'App\supports');
 add_action('wp_enqueue_scripts', 'App\register_assets');
+add_action('widgets_init', 'App\register_widget'); 
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
 add_filter('query_vars', 'App\query_vars');
