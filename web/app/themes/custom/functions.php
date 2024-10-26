@@ -2,9 +2,13 @@
 
 namespace App;
 
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 use App\Options\AgenceMenuPage;
 use App\Metaboxes\SponsoMetaBox;
-use App\Widget\YoutubeWidget;
+use App\Widgets\YoutubeWidget;
 
 function supports()
 {
@@ -108,7 +112,6 @@ function query_vars ($params) {
     return $params;
 }
 
-require_once 'Widgets/YoutubeWidget.php';
 function register_custom_widget () {
     register_widget(YoutubeWidget::class);
     register_sidebar([
@@ -130,9 +133,6 @@ add_action('widgets_init', 'App\register_custom_widget');
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
 add_filter('query_vars', 'App\query_vars');
-
-require_once('Metaboxes/SponsoMetaBox.php');
-require_once('Options/AgenceMenuPage.php');
 
 SponsoMetaBox::register();
 AgenceMenuPage::register();

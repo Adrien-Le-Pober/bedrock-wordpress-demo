@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Widget;
+namespace App\Widgets;
 
 use WP_Widget;
 

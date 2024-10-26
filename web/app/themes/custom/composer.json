@@ -1,0 +1,15 @@
+{
+    "name": "adrie/bedrock-wordpress-demo",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zenithao",
+            "email": "adrien.le.pober@gmail.com"
+        }
+    ],
+    "require": {}
+}
