@@ -18,6 +18,13 @@ get_template_part('parts/header') ?>
         </p>
         <?= the_content(); ?>
 
+        <?php
+        // si les commentaires sont activés ou que le nombre de commentaire est > 0
+        if (comments_open() || get_comments_number()) {
+            comments_template();
+        }
+        ?>
+
         <h2>Articles relatifs</h2>
 
         <div class="row">

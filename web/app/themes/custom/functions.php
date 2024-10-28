@@ -9,11 +9,13 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 use App\Options\AgenceMenuPage;
 use App\Metaboxes\SponsoMetaBox;
 use App\Widgets\YoutubeWidget;
+use App\Walker\CommentWalker;
 
 function supports()
 {
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
+    add_theme_support('html5');
     register_nav_menu('header', 'En tête du menu');
 
     add_image_size('card-header', 350, 215, true);
@@ -133,6 +135,15 @@ add_action('widgets_init', 'App\register_custom_widget');
 add_filter('nav_menu_css_class', 'App\menu_class');
 add_filter('nav_menu_link_attributes', 'App\menu_link_class');
 add_filter('query_vars', 'App\query_vars');
+add_filter('comment_form_fields', function($fields) {
+    $fields['comment'] = <<<HTML
+    <div class="form-group">
+        <label for="comment">Commentaire</label>
+        <textarea class="form-control" name="comment" id="comment" required rows="3"></textarea>
+    </div>
+    HTML;
+    return $fields;
+});
 
 SponsoMetaBox::register();
 AgenceMenuPage::register();
