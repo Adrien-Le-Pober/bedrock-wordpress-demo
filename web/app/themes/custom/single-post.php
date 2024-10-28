@@ -2,7 +2,7 @@
 
 use App\Metaboxes\SponsoMetaBox;
 
-get_header() ?>
+get_template_part('parts/header') ?>
 
 <?php if (have_posts()): ?>
     <?php while (have_posts()): the_post(); ?>
@@ -52,4 +52,4 @@ get_header() ?>
     <?php endwhile;
 endif; ?>
 
-<?php get_footer() ?>
+<?php get_template_part('parts/footer') ?>

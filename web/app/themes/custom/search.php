@@ -1,4 +1,4 @@
-<?php get_header() ?>
+<?php get_template_part('parts/header') ?>
 
 <form>
     <input type="search" class="form-control mt-2" placeholder="Votre recherche" name="s" value="<?= get_search_query() ?>">
@@ -26,4 +26,4 @@
     <h1>Pas d'articles</h1>
 <?php endif; ?>
 
-<?php get_footer() ?>
+<?php get_template_part('parts/footer') ?>

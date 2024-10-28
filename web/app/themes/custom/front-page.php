@@ -1,4 +1,4 @@
-<?php get_header() ?>
+<?php get_template_part('parts/header') ?>
 
 <!-- <?php while (have_posts()): the_post() ?>
     <h1><?= the_title(); ?></h1>
@@ -137,10 +137,10 @@
 
     <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem;">
-            <?= get_sidebar('homepage') // appele sidebar-homepage.php ?> 
+            <?= get_sidebar('homepage') // appele sidebar-homepage.php ?>
         </div>
     </div>
 </div>
 
 
-<?php get_footer() ?>
+<?php get_template_part('parts/footer') ?>

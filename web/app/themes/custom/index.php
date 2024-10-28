@@ -1,6 +1,6 @@
-<?php get_header() ?>
+<?php get_template_part('parts/header');
 
-<?php $sports = get_terms(['taxonomy' => 'sport']); ?>
+$sports = get_terms(['taxonomy' => 'sport']); ?>
 <ul class="nav nav-pills my-4">
     <?php foreach($sports as $sport): ?>
     <li class="nav-item">
@@ -22,4 +22,4 @@
     <h1>Pas d'articles</h1>
 <?php endif; ?>
 
-<?php get_footer() ?>
+<?php get_template_part('parts/footer') ?>

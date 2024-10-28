@@ -1,4 +1,4 @@
-<?php get_header() ?>
+<?php get_template_part('parts/header') ?>
 
 <?php if (have_posts()): ?>
     <div class="row">
@@ -26,4 +26,4 @@
     <h1>Pas d'articles</h1>
 <?php endif; ?>
 
-<?php get_footer() ?>
+<?php get_template_part('parts/footer') ?>
