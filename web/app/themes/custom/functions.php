@@ -1,6 +1,5 @@
 <?php
 
-namespace App;
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
@@ -127,23 +126,25 @@ function register_custom_widget () {
     ]);
 }
 
-add_action('pre_get_posts', 'App\pre_get_posts');
-add_action('init', 'App\init');
-add_action('after_setup_theme', 'App\supports');
-add_action('wp_enqueue_scripts', 'App\register_assets');
-add_action('widgets_init', 'App\register_custom_widget'); 
-add_filter('nav_menu_css_class', 'App\menu_class');
-add_filter('nav_menu_link_attributes', 'App\menu_link_class');
-add_filter('query_vars', 'App\query_vars');
-add_filter('comment_form_fields', function($fields) {
-    $fields['comment'] = <<<HTML
-    <div class="form-group">
-        <label for="comment">Commentaire</label>
-        <textarea class="form-control" name="comment" id="comment" required rows="3"></textarea>
-    </div>
-    HTML;
-    return $fields;
-});
+if (function_exists('add_action')) {
+    add_action('pre_get_posts', 'pre_get_posts');
+    add_action('init', 'init');
+    add_action('after_setup_theme', 'supports');
+    add_action('wp_enqueue_scripts', 'register_assets');
+    add_action('widgets_init', 'register_custom_widget'); 
+    add_filter('nav_menu_css_class', 'menu_class');
+    add_filter('nav_menu_link_attributes', 'menu_link_class');
+    add_filter('query_vars', 'query_vars');
+    add_filter('comment_form_fields', function($fields) {
+        $fields['comment'] = <<<HTML
+        <div class="form-group">
+            <label for="comment">Commentaire</label>
+            <textarea class="form-control" name="comment" id="comment" required rows="3"></textarea>
+        </div>
+        HTML;
+        return $fields;
+    });
+}
 
 SponsoMetaBox::register();
 AgenceMenuPage::register();
