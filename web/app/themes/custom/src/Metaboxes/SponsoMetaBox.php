@@ -8,8 +8,10 @@ class SponsoMetaBox
     const NONCE = '_custom_sponso_nonce';
 
     public static function register() {
-        add_action('add_meta_boxes', [self::class, 'add'], 10, 2);
-        add_action('save_post', [self::class, 'save']);
+        if (function_exists('add_action')) {
+            add_action('add_meta_boxes', [self::class, 'add'], 10, 2);
+            add_action('save_post', [self::class, 'save']);
+        }
     }
 
     public static function add($postType, $post)

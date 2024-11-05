@@ -10,9 +10,11 @@ class AgenceMenuPage
 
     public static function register()
     {
-        add_action('admin_menu', [self::class, 'addMenu']);
-        add_action('admin_init', [self::class, 'registerSettings']);
-        add_action('admin_enqueue_scripts', [self::class, 'registerScripts']);
+        if (function_exists('add_action')) {
+            add_action('admin_menu', [self::class, 'addMenu']);
+            add_action('admin_init', [self::class, 'registerSettings']);
+            add_action('admin_enqueue_scripts', [self::class, 'registerScripts']);
+        }
     }
 
     public static function registerScripts($suffix)
