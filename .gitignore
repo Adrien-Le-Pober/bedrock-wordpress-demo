@@ -7,6 +7,7 @@ web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 web/app/cache/*
+web/phpmyadmin
 
 # WordPress
 web/wp
@@ -25,3 +26,6 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# Tests
+tests/wordpress-develop
