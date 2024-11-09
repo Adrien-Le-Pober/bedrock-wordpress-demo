@@ -18,9 +18,11 @@ composer update -W
 
 ### 4. Créer le fichier de configuration
 Dans le dossier `tests/wordpress-develop`, copiez le fichier de configuration `wp-tests-config-sample.php` en `wp-tests-config.php`.
-Puis, renseignez les informations de la base de données de test (nom, utilisateur, mot de passe), et le thème à tester.
+Puis, renseignez le chemin vers la base de code WordPress, le thème à tester et les informations de la base de données de test (nom, utilisateur, mot de passe).
 
 ```php
+define( 'ABSPATH', dirname( __FILE__, 3 ) . '/web/wp/' );
+
 define( 'WP_DEFAULT_THEME', 'custom' );
 
 define( 'DB_NAME', 'wordpress_tests' );
